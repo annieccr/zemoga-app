@@ -7,15 +7,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.zemoga_app.ui.theme.ZemogaappTheme
-
 import androidx.compose.material.Text
 import androidx.compose.material.Button
-import androidx.compose.material.Card
 import androidx.compose.material.AlertDialog
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 
 class MainActivity : ComponentActivity() {
     lateinit var navController: NavHostController

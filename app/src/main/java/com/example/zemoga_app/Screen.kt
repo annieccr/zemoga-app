@@ -1,4 +1,4 @@
-package com.example.zemoga_app.Screens
+package com.example.zemoga_app
 
 sealed class Screen(val route: String){
     object Posts: Screen(route="post_screen")

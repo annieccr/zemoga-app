@@ -1,4 +1,4 @@
-package com.example.zemoga_app.ui.postDetail.ui.components
+package com.example.zemoga_app.postDetail.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text

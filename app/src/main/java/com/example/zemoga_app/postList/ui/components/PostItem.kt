@@ -1,4 +1,4 @@
-package com.example.zemoga_app.ui.postList.ui.components
+package com.example.zemoga_app.postList.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.zemoga_app.Screens.Screen
+import com.example.zemoga_app.Screen
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

@@ -1,24 +1,12 @@
-package com.example.zemoga_app.Screens
+package com.example.zemoga_app.postDetail.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -28,12 +16,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.zemoga_app.ui.postDetail.ui.components.Comment
+import com.example.zemoga_app.Components.TopBar
+import com.example.zemoga_app.postDetail.ui.components.Comment
 
 @Composable
 fun DetailPostScreen (navController : NavController){
     Column() {
-        TopBarDetail(navController)
+        TopBar("", navController)
         Box(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
         ) {
@@ -165,27 +154,6 @@ fun DetailPostScreen (navController : NavController){
         }
     }
 
-}
-
-@Composable
-fun TopBarDetail (navController: NavController){
-    TopAppBar(
-        backgroundColor = Color(0xFF37b24d),
-        title = { Text(
-            text = "",
-            color = Color.White
-        ) },
-        navigationIcon = {
-            IconButton(onClick = {navController.popBackStack() }) {
-                Icon(Icons.Filled.ArrowBack, contentDescription = null, tint = Color.White)
-            }
-        },
-        actions = {
-            IconButton(onClick = { /* doSomething() */ }) {
-                Icon(Icons.Outlined.Star, contentDescription = null, tint = Color.White)
-            }
-        }
-    )
 }
 
 @Composable
