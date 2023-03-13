@@ -7,28 +7,34 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.example.zemoga_app.Components.TopBar
+import com.example.zemoga_app.postDetail.ui.components.Bar
 import com.example.zemoga_app.postDetail.ui.components.Comment
+import com.example.zemoga_app.postList.ui.PostViewModel
 
 @Composable
-fun DetailPostScreen (navController : NavController){
+fun DetailPostScreen (navController : NavController, viewModel: PostViewModel, id:Int){
+    LaunchedEffect(Unit){
+        viewModel.getPost(id)
+    }
     Column() {
-        TopBar("", navController)
+        Bar(navController, viewModel)
         Box(
-            modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
         ) {
             Column(
                 Modifier
-                    .padding(20.dp).fillMaxHeight(1F)
+                    .padding(20.dp)
+                    .fillMaxHeight(1F)
             ) {
                 Text(
                     fontWeight = FontWeight.Bold,
@@ -42,7 +48,7 @@ fun DetailPostScreen (navController : NavController){
                 )
                 Text(
                     textAlign = TextAlign.Justify,
-                    text = "It is a long established fact that a reader will be distracted by the readable content It is a long established fact that a reader will be distracted by the readable content It is a long established fact that a reader will be distracted by the readable content It is a long established fact that a reader will be distracted by the readable content ",
+                    text = viewModel.post.body.toString(),
                     modifier = Modifier
                         .padding(bottom = 10.dp)
                         .clickable {
@@ -68,7 +74,7 @@ fun DetailPostScreen (navController : NavController){
                         }
                     )
                     Text(
-                        text = "Name - name",
+                        text = viewModel.user.name.toString(),
                         modifier = Modifier.clickable {
                             navController.popBackStack()
                         }
@@ -83,7 +89,7 @@ fun DetailPostScreen (navController : NavController){
                         }
                     )
                     Text(
-                        text = "Email - email",
+                        text = viewModel.user.email.toString(),
                         modifier = Modifier.clickable {
                             navController.popBackStack()
                         }
@@ -98,7 +104,7 @@ fun DetailPostScreen (navController : NavController){
                         }
                     )
                     Text(
-                        text = "Phone - phone",
+                        text = viewModel.user.phone.toString(),
                         modifier = Modifier.clickable {
                             navController.popBackStack()
                         }
@@ -113,7 +119,7 @@ fun DetailPostScreen (navController : NavController){
                         }
                     )
                     Text(
-                        text = "Website - site",
+                        text = viewModel.user.website.toString(),
                         modifier = Modifier.clickable {
                             navController.popBackStack()
                         }
@@ -132,32 +138,15 @@ fun DetailPostScreen (navController : NavController){
                                 .fillMaxWidth()
                                 .padding(5.dp)
                         )
-                        Comment("This is a comment")
-                        Comment("This is a comment")
-                        Comment("This is a comment")
-                        Comment("This is a comment")
-                        Comment("This is a comment")
-                        Comment("This is a comment")
-                        Comment("This is a comment")
-                        Comment("This is a comment")
-                        Comment("This is a comment")
-                        Comment("This is a comment")
-                        Comment("This is a comment")
-                        Comment("This is a comment")
-
-
+                        for (comment in viewModel.comments){
+                            Comment(comment.body)
+                        }
                     }
                 }
 
             }
-
         }
     }
 
 }
 
-@Composable
-@Preview(showBackground = true)
-fun DetailPostScreenPreview (){
-    DetailPostScreen(navController = rememberNavController())
-}
