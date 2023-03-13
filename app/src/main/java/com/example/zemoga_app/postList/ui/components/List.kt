@@ -11,22 +11,22 @@ import com.example.zemoga_app.postList.ui.model.room.Post
 import com.example.zemoga_app.postList.ui.PostViewModel
 
 @Composable
-fun List (tabSelected: Int, goToDetail: (Int) -> Unit, viewModel: PostViewModel, posts:List<Post>){
-    if (tabSelected == 0){
-        Box(modifier = Modifier.verticalScroll(rememberScrollState())){
+fun List(tabSelected: Int, goToDetail: (Int) -> Unit, viewModel: PostViewModel, posts: List<Post>) {
+    if (tabSelected == 0) {
+        Box(modifier = Modifier.verticalScroll(rememberScrollState())) {
             Column(modifier = Modifier.fillMaxSize()) {
-                for (post in posts){
+                for (post in posts) {
                     PostItem(post, goToDetail, viewModel)
                 }
             }
         }
-    }else{
-        Box(modifier = Modifier.verticalScroll(rememberScrollState())){
+    } else {
+        Box(modifier = Modifier.verticalScroll(rememberScrollState())) {
             Column() {
-                for (post in posts){
-                   if(post.favorite){
-                       PostItem(post, goToDetail, viewModel)
-                   }
+                for (post in posts) {
+                    if (post.favorite) {
+                        PostItem(post, goToDetail, viewModel)
+                    }
                 }
             }
         }

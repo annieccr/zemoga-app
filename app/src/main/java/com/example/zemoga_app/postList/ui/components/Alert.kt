@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.zemoga_app.postList.ui.PostViewModel
 
 @Composable
-fun Alert (viewModel:PostViewModel){
+fun Alert(viewModel: PostViewModel) {
     AlertDialog(
         onDismissRequest = {
             viewModel.closeDialog()
@@ -40,7 +40,7 @@ fun Alert (viewModel:PostViewModel){
                     onClick = { viewModel.deleteAllPosts() },
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
                 ) {
-                    Text("Delete")
+                    Text("Delete", color = Color.White)
                 }
             }
         }

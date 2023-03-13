@@ -18,9 +18,9 @@ import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen (navController: NavController){
-    LaunchedEffect(key1 = true){
-        delay(5000)
+fun SplashScreen(navController: NavController) {
+    LaunchedEffect(key1 = true) {
+        //delay(5000)
         navController.popBackStack()
         navController.navigate(Screen.Posts.route)
     }
@@ -28,13 +28,13 @@ fun SplashScreen (navController: NavController){
 }
 
 @Composable
-fun Splash (){
+fun Splash() {
     val infiniteTransition = rememberInfiniteTransition()
     val splashSize by infiniteTransition.animateFloat(
         initialValue = 100.0f,
         targetValue = 250.0f,
         animationSpec = infiniteRepeatable(
-            animation = tween(800, delayMillis = 100,easing = FastOutLinearInEasing),
+            animation = tween(800, delayMillis = 100, easing = FastOutLinearInEasing),
             repeatMode = RepeatMode.Reverse
         )
     )

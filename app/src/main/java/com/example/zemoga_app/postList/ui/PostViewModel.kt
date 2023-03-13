@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PostViewModel @Inject constructor(
     private val dataRepository: DataRepository
-) : ViewModel (){
+) : ViewModel() {
     private val _tabSelected = MutableLiveData<Int>()
     val tabSelected: LiveData<Int> = _tabSelected
 
@@ -26,36 +26,42 @@ class PostViewModel @Inject constructor(
     }
 
     var dialog by mutableStateOf(false)
-    var post by mutableStateOf(Post(0, 0, "","", false))
-    var user by mutableStateOf(User(0, "", "","","",""))
+    var post by mutableStateOf(Post(0, 0, "", "", false))
+    var user by mutableStateOf(User(0, "", "", "", "", ""))
     var comments by mutableStateOf(listOf<Comment>())
     var isLoading by mutableStateOf(false)
 
-    fun openDialog (){
+    fun openDialog() {
         dialog = true
     }
-    fun closeDialog (){
+
+    fun closeDialog() {
         dialog = false
     }
-    fun setTab (index:Int){
+
+    fun setTab(index: Int) {
         _tabSelected.value = index
     }
-    fun savePosts() = viewModelScope.launch(Dispatchers.IO){
+
+    fun savePosts() = viewModelScope.launch(Dispatchers.IO) {
         isLoading = true
         dataRepository.saveData()
         isLoading = false
     }
-    fun getPost(id: Int) = viewModelScope.launch(Dispatchers.IO){
+
+    fun getPost(id: Int) = viewModelScope.launch(Dispatchers.IO) {
         post = dataRepository.getPost(id)
         user = dataRepository.getUser(post.userId)
         comments = dataRepository.getCommentsById(id)
     }
-    fun updatePost(favorite:Boolean, id: Int) {
-        viewModelScope.launch(Dispatchers.IO){
+
+    fun updatePost(favorite: Boolean, id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
             dataRepository.updatePost(favorite, id)
         }
     }
-    fun deleteAllPosts() = viewModelScope.launch(Dispatchers.IO){
+
+    fun deleteAllPosts() = viewModelScope.launch(Dispatchers.IO) {
         closeDialog()
         isLoading = true
         dataRepository.deleteAllPosts()

@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun Comment (comment:String){
+fun Comment(comment: String) {
     Column() {
         ListItem(
             text = { Text(comment, textAlign = TextAlign.Justify) },

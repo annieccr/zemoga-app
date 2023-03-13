@@ -18,7 +18,7 @@ import com.example.zemoga_app.postList.ui.PostViewModel
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun PostItem (content: Post, goToDetail: (Int) -> Unit, viewModel: PostViewModel){
+fun PostItem(content: Post, goToDetail: (Int) -> Unit, viewModel: PostViewModel) {
     Column() {
         ListItem(
             text = {
@@ -26,44 +26,53 @@ fun PostItem (content: Post, goToDetail: (Int) -> Unit, viewModel: PostViewModel
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Box(modifier = Modifier.weight(1F)){
-                        Badge (
+                    Box(modifier = Modifier.weight(1F)) {
+                        Badge(
                             backgroundColor = Color.Blue,
                             modifier = Modifier
                                 .width(8.dp)
                                 .height(8.dp)
                         )
                     }
-                    Box(modifier = Modifier.weight(15F).clickable{
-                        goToDetail(content.id)
-                    }){
-                        Text(content.title.uppercase(),
+                    Box(modifier = Modifier
+                        .weight(15F)
+                        .clickable {
+                            goToDetail(content.id)
+                        }) {
+                        Text(
+                            content.title.uppercase(),
                             modifier = Modifier
                                 .padding(20.dp)
                                 .padding(end = 10.dp),
                             textAlign = TextAlign.Left,
                             fontSize = 15.sp,
-                            )
+                        )
                     }
-                    Box( modifier = Modifier
-                        .weight(2F)
-                        .clickable {
-                            viewModel.updatePost(!content.favorite, content.id)
-                        }){
-                        if(content.favorite){
-                            Icon(
-                                Icons.Filled.Star,
-                                contentDescription = null,
-                                tint = MaterialTheme.colors.primaryVariant,
-                                modifier = Modifier.size(30.dp)
+                    Box(
+                        modifier = Modifier
+                            .weight(2F)
+                    ) {
+                        IconButton(onClick = {
+                            viewModel.updatePost(
+                                !content.favorite,
+                                content.id
                             )
-                        }else{
-                            Icon(
-                                Icons.Outlined.Star,
-                                contentDescription = null,
-                                tint = MaterialTheme.colors.secondary,
-                                modifier = Modifier.size(30.dp)
-                            )
+                        }) {
+                            if (content.favorite) {
+                                Icon(
+                                    Icons.Filled.Star,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colors.primaryVariant,
+                                    modifier = Modifier.size(30.dp)
+                                )
+                            } else {
+                                Icon(
+                                    Icons.Outlined.Star,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colors.secondary,
+                                    modifier = Modifier.size(30.dp)
+                                )
+                            }
                         }
                     }
                 }

@@ -30,7 +30,8 @@ class DataRepositoryImp @Inject constructor(
             postDao.insert(post2)
         }
         for (user in users) {
-            val user2 = User(user.id, user.name, user.username, user.email, user.phone, user.website)
+            val user2 =
+                User(user.id, user.name, user.username, user.email, user.phone, user.website)
             userDao.insert(user2)
         }
         for (comment in comments) {
@@ -47,7 +48,7 @@ class DataRepositoryImp @Inject constructor(
 
     override fun getCommentsById(id: Int): List<Comment> = commentDao.getAllByPost(id)
 
-    override fun updatePost(favorite: Boolean, id: Int) = postDao.update(favorite,id)
+    override fun updatePost(favorite: Boolean, id: Int) = postDao.update(favorite, id)
 
     override fun deleteAllPosts() = postDao.deleteAll()
 }

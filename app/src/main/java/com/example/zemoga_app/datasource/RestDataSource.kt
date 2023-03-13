@@ -8,9 +8,11 @@ import retrofit2.http.GET
 
 interface RestDataSource {
     @GET("users")
-    suspend fun getUsers():List<User>
+    suspend fun getUsers(): List<User>
+
     @GET("comments")
-    suspend fun getComments():List<Comment>
+    suspend fun getComments(): List<Comment>
+
     @GET("posts")
-    suspend fun getPosts():List<Post>
+    suspend fun getPosts(): List<Post>
 }

@@ -12,19 +12,26 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun TopBar (title: String, scope: CoroutineScope, drawerState: DrawerState, viewModel: PostViewModel){
+fun TopBar(
+    title: String,
+    scope: CoroutineScope,
+    drawerState: DrawerState,
+    viewModel: PostViewModel
+) {
     TopAppBar(
-        title = { Text(
-            text = title
-        ) },
+        title = {
+            Text(
+                text = title
+            )
+        },
         navigationIcon = {
             IconButton(onClick = { scope.launch { drawerState.open() } }) {
-                Icon( Icons.Filled.Menu, contentDescription = null )
+                Icon(Icons.Filled.Menu, contentDescription = null)
             }
         },
         actions = {
-            IconButton(onClick = { viewModel.savePosts()}) {
-                Icon( Icons.Filled.Refresh, contentDescription = null )
+            IconButton(onClick = { viewModel.savePosts() }) {
+                Icon(Icons.Filled.Refresh, contentDescription = null)
             }
         }
     )

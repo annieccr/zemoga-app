@@ -3,7 +3,7 @@ package com.example.zemoga_app.postList.ui.model.room
 import androidx.room.*
 
 @Entity(tableName = "comments")
-data class Comment (
+data class Comment(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
     @ColumnInfo(name = "postId") val postId: Int,
     @ColumnInfo(name = "name") val name: String,

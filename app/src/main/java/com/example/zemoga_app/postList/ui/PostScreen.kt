@@ -21,8 +21,11 @@ import com.example.zemoga_app.postList.ui.components.Tab
 import com.example.zemoga_app.postList.ui.components.List
 
 @Composable
-fun PostScreen (navController: NavController, viewModel: PostViewModel = hiltViewModel(), goToDetail: (Int) -> Unit){
-    val tabSelected:Int by viewModel.tabSelected.observeAsState(initial = 0)
+fun PostScreen(
+    viewModel: PostViewModel = hiltViewModel(),
+    goToDetail: (Int) -> Unit
+) {
+    val tabSelected: Int by viewModel.tabSelected.observeAsState(initial = 0)
     val posts by viewModel.posts.observeAsState(arrayListOf())
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -35,16 +38,16 @@ fun PostScreen (navController: NavController, viewModel: PostViewModel = hiltVie
             Column() {
                 TopBar("Posts", scope, drawerState, viewModel)
                 Tab(viewModel, tabSelected)
-                if (viewModel.isLoading){
+                if (viewModel.isLoading) {
                     Loading()
-                }else{
+                } else {
                     List(tabSelected, goToDetail, viewModel, posts)
                 }
             }
-            if(tabSelected == 0 && viewModel.posts.value?.isNotEmpty() == true){
-                Box(modifier = Modifier.fillMaxSize()){
+            if (tabSelected == 0 && viewModel.posts.value?.isNotEmpty() == true) {
+                Box(modifier = Modifier.fillMaxSize()) {
                     FloatingActionButton(
-                        onClick = { viewModel.openDialog()},
+                        onClick = { viewModel.openDialog() },
                         backgroundColor = Color.Red,
                         elevation = FloatingActionButtonDefaults.elevation(10.dp),
                         modifier = Modifier

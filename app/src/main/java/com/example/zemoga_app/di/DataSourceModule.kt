@@ -27,19 +27,21 @@ class DataSourceModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(@Named("BaseUrl") baseUrl:String): Retrofit{
+    fun provideRetrofit(@Named("BaseUrl") baseUrl: String): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(baseUrl)
             .build()
     }
-    @Singleton
-    @Provides
-    fun restDataSource (retrofit: Retrofit): RestDataSource = retrofit.create(RestDataSource::class.java)
 
     @Singleton
     @Provides
-    fun dbDataSource(@ApplicationContext context: Context) : DbDataSource {
+    fun restDataSource(retrofit: Retrofit): RestDataSource =
+        retrofit.create(RestDataSource::class.java)
+
+    @Singleton
+    @Provides
+    fun dbDataSource(@ApplicationContext context: Context): DbDataSource {
         return Room.databaseBuilder(context, DbDataSource::class.java, "zemoga_app")
             .fallbackToDestructiveMigration()
             .build()
@@ -51,9 +53,9 @@ class DataSourceModule {
 
     @Singleton
     @Provides
-    fun userDao (db: DbDataSource): UserDao = db.userDao()
+    fun userDao(db: DbDataSource): UserDao = db.userDao()
 
     @Singleton
     @Provides
-    fun postDao (db: DbDataSource): PostDao = db.postDao()
+    fun postDao(db: DbDataSource): PostDao = db.postDao()
 }

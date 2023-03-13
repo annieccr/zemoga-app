@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Entity(tableName = "posts")
-data class Post (
+data class Post(
     @PrimaryKey(autoGenerate = true) var id: Int,
     @ColumnInfo(name = "userId") val userId: Int,
     @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "body")val body: String,
+    @ColumnInfo(name = "body") val body: String,
     @ColumnInfo(name = "favorite") val favorite: Boolean
 )
 

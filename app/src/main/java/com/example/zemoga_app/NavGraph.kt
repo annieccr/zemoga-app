@@ -12,27 +12,29 @@ import com.example.zemoga_app.postDetail.ui.DetailPostScreen
 @Composable
 fun SetupNavGraph(
     navController: NavHostController
-){
-    NavHost(navController = navController, startDestination = Screen.Splash.route){
+) {
+    NavHost(navController = navController, startDestination = Screen.Splash.route) {
         composable(
             route = Screen.Splash.route
-        ){
+        ) {
             SplashScreen(navController = navController)
         }
         composable(
             route = Screen.Posts.route
-        ){
-            PostScreen(navController = navController, viewModel = hiltViewModel(), goToDetail = {  newRoute ->
-                navController.navigate(
-                    Screen.Detail.createRoute(newRoute)
-                )
-            })
+        ) {
+            PostScreen(
+                viewModel = hiltViewModel(),
+                goToDetail = { newRoute ->
+                    navController.navigate(
+                        Screen.Detail.createRoute(newRoute)
+                    )
+                })
         }
         composable(
             route = Screen.Detail.route,
-            arguments = listOf(navArgument("id"){defaultValue = 404})
-        ){
-            navBackStackEntry -> var id = navBackStackEntry.arguments?.getInt("id")
+            arguments = listOf(navArgument("id") { defaultValue = 404 })
+        ) { navBackStackEntry ->
+            var id = navBackStackEntry.arguments?.getInt("id")
             requireNotNull(id)
             DetailPostScreen(navController = navController, viewModel = hiltViewModel(), id)
         }
